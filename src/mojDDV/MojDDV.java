@@ -2,6 +2,7 @@ package mojDDV;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -32,5 +33,20 @@ public class MojDDV {
         PrintWriter printWriter = new PrintWriter(out);
         this.receipts.forEach(printWriter::println);
         printWriter.flush();
+    }
+    public void printStatistics (OutputStream outputStream){
+        PrintWriter printWriter = new PrintWriter(outputStream);
+        DoubleSummaryStatistics statistics = this.receipts.stream()
+                .mapToDouble(Receipt::getTaxReturn)
+                .summaryStatistics();
+
+        printWriter.println(String.format("min:\t%.3f",statistics.getMin()));
+        printWriter.println(String.format("max:\t%.3f",statistics.getMax()));
+        printWriter.println(String.format("sum:\t%.3f",statistics.getSum()));
+        printWriter.println(String.format("count:\t%d",statistics.getCount()));
+        printWriter.println(String.format("avg:\t%.3f",statistics.getAverage()));
+        printWriter.flush();
+
+
     }
 }

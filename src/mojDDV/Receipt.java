@@ -31,7 +31,7 @@ public class Receipt {
         return new Receipt(theId, receiptItemsList, theSum);
 
     }
-    private Double getTaxReturn(){
+    public Double getTaxReturn(){
         return 0.15 * this.receiptItems.stream()
                 .mapToDouble(receiptItem -> receiptItem.taxReturnForItem)
                 .sum();
@@ -39,6 +39,6 @@ public class Receipt {
 
     @Override
     public String toString() {
-        return String.format("%d %d %.2f",this.id, this.sum, getTaxReturn());
+        return String.format("%10d\t%10d\t%10.5f",this.id, this.sum, getTaxReturn());
     }
 }

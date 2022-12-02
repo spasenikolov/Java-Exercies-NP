@@ -12,5 +12,9 @@ public class MojDDVTest {
         System.out.println("===PRINTING TAX RETURNS RECORDS TO OUTPUT STREAM ===");
         mojDDV.printTaxReturns(System.out);
 
+        System.out.println("===PRINTING SUMMARY STATISTICS FOR TAX RETURNS TO OUTPUT STREAM===");
+        mojDDV.printStatistics(System.out);
+
+
     }
 }
