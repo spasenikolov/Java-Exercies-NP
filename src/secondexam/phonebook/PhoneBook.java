@@ -19,7 +19,7 @@ public class PhoneBook {
             throw new DuplicateNumberException(number);
         }
         contactByNumber.put(number, contact);
-        contactsByName.putIfAbsent(name, new HashSet<>());
+        contactsByName.putIfAbsent(name, new TreeSet<>(Comparator.comparing(Contact::getName).thenComparing(Contact::getNumber)));
         contactsByName.get(name).add(contact);
 
     }
@@ -41,8 +41,6 @@ public class PhoneBook {
             System.out.println("NOT FOUND");
         } else {
             contactsByName.get(part)
-                    .stream()
-                    .sorted(Comparator.comparing(Contact::getName).thenComparing(Contact::getNumber))
                     .forEach(System.out::println);
         }
     }
